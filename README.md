@@ -1,1 +1,1 @@
-# InfoGuru
+# QuizGPT
