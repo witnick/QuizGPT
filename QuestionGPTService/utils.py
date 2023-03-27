@@ -11,3 +11,8 @@ def gpt_prompt(prompt, nb_questions):
     return f"Generate a quiz of {nb_questions} questions from the following prompt:\n{prompt}\n\
         Also generate answers for each of the questions generated from the prompt. Let the formatting be 'Question 1: ...'\
               then a new line, and then with its answer as 'Answer: ...' for each of the questions. Each block of question and answer is separated with 2 new lines."
+
+def is_approved_sender(sender):
+    if sender == "test":
+        return True
+    return False

@@ -29,13 +29,13 @@ import pika
 import requests
 from flask import Flask
 import threading
-from utils import MOCK_RESPONSE, gpt_prompt
+from utils import MOCK_RESPONSE, gpt_prompt, is_approved_sender
 
 app = Flask(__name__)
 env = os.environ.get("ENVIRONMENT")
 
 # RabbitMQ configurations
-RABBITMQ_HOST = os.environ.get("DEV_RABBITMQ_HOST", "localhost") if env == "dev" else os.environ.get("PROD_RABBITMQ_HOST")
+RABBITMQ_HOST = os.environ.get("DEV_RABBITMQ_URL", "localhost") if env == "dev" else os.environ.get("PROD_RABBITMQ_URL")
 INPUT_QUEUE = os.environ.get("INPUT_QUEUE", "input_queue")
 OUTPUT_QUEUE = os.environ.get("OUTPUT_QUEUE", "output_queue")
 
@@ -106,6 +106,10 @@ def callback(ch, method, properties, body):
         quiz_id = message["id"]
         number = message.get("number",0)
         text = message.get("text","")
+        sender = message.get("sender","")
+        if not is_approved_sender(sender):
+            print('Sender not approved. Ignoring message.')
+            return
 
         generated_text = chatgpt_request(text, number)
         print('Generated text---\n',generated_text)
