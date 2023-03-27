@@ -1,3 +1,7 @@
+import os
+
+SENDER = os.environ['SENDER']
+
 MOCK_RESPONSE = '''Question 1: What is a binary search tree?
 Answer: A binary search tree is a binary tree data structure where each node has at most two child nodes and the value of each node is greater than or equal to the values in its left subtree and less than or equal to the values in its right subtree.
 
@@ -13,6 +17,6 @@ def gpt_prompt(prompt, nb_questions):
               then a new line, and then with its answer as 'Answer: ...' for each of the questions. Each block of question and answer is separated with 2 new lines."
 
 def is_approved_sender(sender):
-    if sender == "test":
+    if sender == SENDER:
         return True
     return False

@@ -11,6 +11,19 @@
 
 To run the application, use the flask command or python -m flask. You need to tell the Flask where your application is with the --app option.
 
+0. Create `.env` file (ask Pan for credentials) ([OpenAI console](https://platform.openai.com/account/api-keys)):
+
+```
+OPENAI_SECRET_KEY="Get your own from the OpenAI console"
+RABBITMQ_HOSTNAME='Ask Pan'
+RABBITMQ_USER='Ask Pan'
+RABBITMQ_PORT='5672'
+RABBITMQ_PASSWORD='Ask Pan'
+RABBITMQ_PREFIX='amqps://'
+ENVIRONMENT='prod'
+SENDER="Ask Pan"
+```
+
 1. Run RabbitMQ locally: `docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.11-management`
 2. `flask --app app.py run` (`py -m flask --app app.py run`)
    - To run in debug mode (automatic changes): `py -m flask --app app run --debug`
