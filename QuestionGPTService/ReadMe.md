@@ -20,3 +20,19 @@ RabbitMQ dashboard to manage messages:
 
 - http://localhost:15672/
 - user pass are both `guest`
+
+---
+
+# Deployment
+
+## Python Flask App
+
+- The Python app is deployed using PythonAnywhere at http://fryingpannn.pythonanywhere.com/
+  - https://www.pythonanywhere.com/user/fryingpannn/webapps/#tab_id_fryingpannn_pythonanywhere_com
+  - Files must be changed directly from within the dashboard source code.
+  - Use bash console on the dashboard to install new libraries.
+
+## RabbitMQ
+
+- The RabbitMQ service is deployed using CloudAMQP at https://api.cloudamqp.com/console/eabc96f0-a3bb-456b-b3f2-04b798d7e228/details. Messages inside can be managed from the console.
+- The URL for this service is amqps://iiybcmbq:ccq8xCvl84IrIHNT74nbIs9YJgox3PGC@woodpecker.rmq.cloudamqp.com/iiybcmbq.
