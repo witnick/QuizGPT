@@ -35,9 +35,11 @@ app = Flask(__name__)
 env = os.environ.get("ENVIRONMENT")
 
 # RabbitMQ configurations
-RABBITMQ_HOST = os.environ.get("DEV_RABBITMQ_URL", "localhost") if env == "dev" else os.environ.get("PROD_RABBITMQ_URL")
+RABBITMQ_HOST = "localhost" if env == "dev" else os.environ["RABBITMQ_HOSTNAME"]
 INPUT_QUEUE = os.environ.get("INPUT_QUEUE", "input_queue")
 OUTPUT_QUEUE = os.environ.get("OUTPUT_QUEUE", "output_queue")
+RABBITMQ_USER = "guest" if env == "dev" else os.environ["RABBITMQ_USER"]
+RABBITMQ_PASSWORD = "guest" if env == "dev" else os.environ["RABBITMQ_PASSWORD"]
 
 # ChatGPT API configurations
 CHATGPT_API_KEY = os.environ.get("OPENAI_SECRET_KEY")
@@ -75,7 +77,8 @@ def chatgpt_request(prompt, nb_questions, max_tokens=200):
 def rabbitmq_connection():
     global GLOBAL_RMQ_CHANNEL
     print("Starting RabbitMQ connection.")
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST))
+    credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST, virtual_host=RABBITMQ_USER, credentials=credentials))
     if connection.is_open:
         print(f"Successfully connected to RabbitMQ at {RABBITMQ_HOST}")
     else:
