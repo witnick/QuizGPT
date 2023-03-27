@@ -15,12 +15,14 @@ Test:
 {
     "id": 1,
     "number": 3,
-    "text": "Data structures and algorithms. Medium difficulty."
+    "text": "Data structures and algorithms. Medium difficulty.",
+    "sender": SENDER from env file
 }
 {
     "id": 2,
     "number": 3,
-    "text": "Vegetables and fruits. Medium difficulty."
+    "text": "Vegetables and fruits. Medium difficulty.",
+    "sender": SENDER
 }
 '''
 import os
@@ -110,6 +112,7 @@ def callback(ch, method, properties, body):
         number = message.get("number",0)
         text = message.get("text","")
         sender = message.get("sender","")
+        
         if not is_approved_sender(sender):
             print('Sender not approved. Ignoring message.')
             return
@@ -131,7 +134,7 @@ def callback(ch, method, properties, body):
         ch.basic_ack(delivery_tag=method.delivery_tag)
         print('Finished callback')
     except Exception as e:
-        print("Error processing message: ", quiz_id, e)
+        print("Error processing message: ", e)
         ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
 
 def start_consuming():
@@ -156,7 +159,8 @@ def test():
 
 @app.route('/outputq')
 def list_outputq():
-    temp_connect = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST))
+    credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
+    temp_connect = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST, virtual_host=RABBITMQ_USER, credentials=credentials))
     temp_channel = temp_connect.channel()
     temp_channel.queue_declare(queue=OUTPUT_QUEUE)
     msgs = []
@@ -171,7 +175,8 @@ def list_outputq():
 
 @app.route('/inputq')
 def list_inputq():
-    temp_connect = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST))
+    credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
+    temp_connect = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST, virtual_host=RABBITMQ_USER, credentials=credentials))
     temp_channel = temp_connect.channel()
     temp_channel.queue_declare(queue=INPUT_QUEUE)
     msgs = []
