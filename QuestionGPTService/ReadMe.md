@@ -50,3 +50,7 @@ RabbitMQ dashboard to manage messages:
 
 - The RabbitMQ service is deployed using CloudAMQP at https://api.cloudamqp.com/console/eabc96f0-a3bb-456b-b3f2-04b798d7e228/details. Messages inside can be managed from the console.
 - Ask Pan for the URL of this service.
+
+# Notes
+
+- If PythonAnywhere hosted instance doesn't connect to hosted RabbitMQ instance. Simply run the Python service locally to the hosted RabbitMQ instance.
