@@ -1,6 +1,5 @@
-package com.infoguru.accountservice.user;
+package com.quizgpt.accountservice.models;
 
-import com.infoguru.accountservice.role.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +21,7 @@ public class User {
     private Long id;
 
     @NotBlank
+    @Size(max = 50)
     private String username;
 
     @NotBlank
@@ -29,6 +29,7 @@ public class User {
     private String password;
 
     @NotBlank
+    @Size(max = 128)
     @Email
     private String email;
 

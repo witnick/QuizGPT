@@ -1,5 +1,7 @@
-package com.infoguru.accountservice.role;
+package com.quizgpt.accountservice.repsository;
 
+import com.quizgpt.accountservice.models.ERole;
+import com.quizgpt.accountservice.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,6 @@
-package com.infoguru.accountservice.user;
+package com.quizgpt.accountservice.repsository;
 
+import com.quizgpt.accountservice.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
