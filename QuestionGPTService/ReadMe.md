@@ -5,6 +5,7 @@
 - Install Python
 - Install Flask `pip install Flask`
 - Install RabbitMQ `pip install pika`
+- Install OpenAI `pip install requests`
 - Install dotenv to enable Environment Variables `pip install python-dotenv`
 
 # How to Run

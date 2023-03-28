@@ -42,6 +42,7 @@ INPUT_QUEUE = os.environ.get("INPUT_QUEUE", "input_queue")
 OUTPUT_QUEUE = os.environ.get("OUTPUT_QUEUE", "output_queue")
 RABBITMQ_USER = "guest" if env == "dev" else os.environ["RABBITMQ_USER"]
 RABBITMQ_PASSWORD = "guest" if env == "dev" else os.environ["RABBITMQ_PASSWORD"]
+RABBITMQ_PORT = int(os.environ["RABBITMQ_PORT"])
 
 # ChatGPT API configurations
 CHATGPT_API_KEY = os.environ.get("OPENAI_SECRET_KEY")
@@ -68,9 +69,9 @@ def chatgpt_request(prompt, nb_questions, max_tokens=200):
         "temperature": 0.8,
     }
 
-    if env == "dev":
-        return MOCK_RESPONSE
-
+    #if env == "dev":
+    return MOCK_RESPONSE
+    
     response = requests.post(CHATGPT_API_ENDPOINT, headers=headers, json=data)
     print("Response: ", response.json())
     response.raise_for_status()
@@ -80,7 +81,7 @@ def rabbitmq_connection():
     global GLOBAL_RMQ_CHANNEL
     print("Starting RabbitMQ connection.")
     credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST, virtual_host=RABBITMQ_USER, credentials=credentials))
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST, port=RABBITMQ_PORT, virtual_host=RABBITMQ_USER, credentials=credentials))
     if connection.is_open:
         print(f"Successfully connected to RabbitMQ at {RABBITMQ_HOST}")
     else:
