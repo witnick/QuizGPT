@@ -1,0 +1,56 @@
+.header {
+  background-color: #4c4c4c;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+  flex: 0;
+}
+
+.logo {
+  font-size: 32px;
+}
+
+.btn-group .button {
+  background-color: #4c4c4c;
+  /* Green */
+  border: 1px solid green;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-group .button:not(:last-child) {
+  border-right: none;
+  /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+  background-color: #3e8e41;
+}
+.btn-group {
+  display: flex;
+  /* margin-top: 40px; */
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}

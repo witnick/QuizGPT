@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Layout from "../src/components/Layout";
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -10,7 +11,9 @@ export default function MyApp({ Component, pageProps }) {
           content="width=device-width, initial-scale=1.0"
         ></meta>
       </Head>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }

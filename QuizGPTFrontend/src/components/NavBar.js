@@ -1,6 +1,10 @@
 import React from "react";
-import styles from "../styles/home.module.css";
+import styles from "../../styles/navbar.module.css";
 import Link from "next/link";
+
+const spacingHorizontal = {
+  width: 20,
+};
 
 export default function Navbar() {
   return (
@@ -14,6 +18,7 @@ export default function Navbar() {
                 Home
               </Link>
             </li>
+            <div style={spacingHorizontal} />
             <li>
               <Link href="/login" class={styles["button"]}>
                 Login
