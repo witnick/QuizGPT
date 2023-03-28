@@ -8,7 +8,7 @@ const spacingHorizontal = {
 
 export default function Navbar() {
   return (
-    <header class={styles.header}>
+    <div class={styles.header}>
       <h1 class={styles.logo}>QuizGPT</h1>
       <div class={styles["btn-group"]}>
         <nav>
@@ -27,6 +27,6 @@ export default function Navbar() {
           </ul>
         </nav>
       </div>
-    </header>
+    </div>
   );
 }
