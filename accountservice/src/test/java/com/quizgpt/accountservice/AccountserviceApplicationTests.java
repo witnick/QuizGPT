@@ -1,4 +1,4 @@
-package com.infoguru.accountservice;
+package com.quizgpt.accountservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

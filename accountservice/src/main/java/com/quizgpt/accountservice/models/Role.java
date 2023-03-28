@@ -1,4 +1,4 @@
-package com.infoguru.accountservice.role;
+package com.quizgpt.accountservice.models;
 
 import jakarta.persistence.*;
 
