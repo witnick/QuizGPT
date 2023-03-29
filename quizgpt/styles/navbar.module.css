@@ -1,4 +1,4 @@
-.header {
+.container {
   background-color: #4c4c4c;
   color: #fff;
   display: flex;
@@ -14,7 +14,7 @@
   font-size: 32px;
 }
 
-.btn-group .button {
+.button {
   background-color: #4c4c4c;
   /* Green */
   border: 1px solid green;
@@ -29,22 +29,23 @@
   cursor: pointer;
 }
 
-.btn-group .button:not(:last-child) {
+.button:not(:last-child) {
   border-right: none;
   /* Prevent double borders */
 }
 
-.btn-group .button:hover {
+.button:hover {
   background-color: #3e8e41;
 }
-.btn-group {
+
+.navContainer {
   display: flex;
   /* margin-top: 40px; */
   justify-content: center;
   align-items: center;
 }
 
-.nav-links {
+.navLinks {
   list-style: none;
   display: flex;
 }
