@@ -26,9 +26,16 @@ public class JwtUtils {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
-                .compact();
+
+        String result = new String();
+        try {
+            result = Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
+                    .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
+                    .compact();
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e.getMessage());
+        }
+        return result;
     }
 
     public String getUserNameFromJwtToken(String token) {

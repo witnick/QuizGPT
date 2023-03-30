@@ -19,5 +19,5 @@ spring:
     web-application-type: servlet
 quizgpt:
   app:
-    jwtSecret: "quizgptSecretKey"
+    jwtSecret: "grJ5BrxzFE5J3vaQTEFosrE7twmUMXD4HgQCJBzRTpRJ59PLUUhJcx5RfcNynKyDiLLCg8o4bgQwf94Sagxa5kL58pH7HFTdkA3AMynx397WRVrt9zZLr2G46aPVzVZS"
     jwtExpirationMs: 86400000
