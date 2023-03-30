@@ -1,11 +1,14 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../src/context/AuthContext";
 import styles from "../styles/form.module.css";
 
 export default function Login() {
   const { loggedIn, login } = useAuthContext();
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (loggedIn) {
@@ -26,12 +29,22 @@ export default function Login() {
           }}
         >
           <div className={styles.inputContainer}>
-            <text className={styles.label}>Username</text>
-            <input className={styles.input} type="text" />
+            <text className={styles.label}>Email</text>
+            <input
+              className={styles.input}
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className={styles.inputContainer}>
             <text className={styles.label}>Password</text>
-            <input className={styles.input} type="password" />
+            <input
+              className={styles.input}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <button
             className={styles.button}

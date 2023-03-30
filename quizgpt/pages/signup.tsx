@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../src/context/AuthContext";
 import styles from "../styles/form.module.css";
 
@@ -8,11 +8,20 @@ export default function SignUp() {
   const { loggedIn } = useAuthContext();
   const router = useRouter();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [username, setUsername] = useState("");
+
   useEffect(() => {
     if (loggedIn) {
       router.push("/");
     }
   }, [loggedIn]);
+
+  const signup = () => {
+    // todo validate?
+  };
 
   return (
     <div className={styles.container}>
@@ -26,23 +35,45 @@ export default function SignUp() {
             justifyContent: "center",
           }}
         >
-          <div className={styles.inputContainer}>
+          {/* <div className={styles.inputContainer}>
             <text className={styles.label}>Username</text>
-            <input className={styles.input} type="text" />
-          </div>
+            <input
+              className={styles.input}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div> */}
           <div className={styles.inputContainer}>
             <text className={styles.label}>Email</text>
-            <input className={styles.input} type="email" />
+            <input
+              className={styles.input}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className={styles.inputContainer}>
             <text className={styles.label}>Password</text>
-            <input className={styles.input} type="password" />
+            <input
+              className={styles.input}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <div className={styles.inputContainer}>
             <text className={styles.label}>Confirm password</text>
-            <input className={styles.input} type="password" />
+            <input
+              className={styles.input}
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </div>
-          <button className={styles.button}>Sign Up</button>
+          <button className={styles.button} onClick={signup}>
+            Sign Up
+          </button>
           <p>
             Already have an account? <Link href={"/login"}>Log in</Link>
           </p>
