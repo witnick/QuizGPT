@@ -43,15 +43,23 @@
 }
 
 .button:hover {
-  background-color: #ff4a35;
+  background-color: green;
 }
 
 .label {
   font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .inputContainer {
   margin-top: 20px;
   flex-direction: column;
   display: flex;
+  width: 250px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 250px;
 }

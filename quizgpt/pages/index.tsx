@@ -31,7 +31,7 @@ export default function Home() {
         )}
         {loggedIn && (
           <div className={styles.buttonContainer}>
-            <Link href="/" className={styles.button}>
+            <Link href="/create-quiz" className={styles.button}>
               Create a quiz
             </Link>
             <Link href="/" className={styles.button}>

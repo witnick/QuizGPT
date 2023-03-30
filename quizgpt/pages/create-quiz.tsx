@@ -1,15 +1,14 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useAuthContext } from "../src/context/AuthContext";
 import styles from "../styles/form.module.css";
 
-export default function SignUp() {
+export default function CreateQuiz() {
   const { loggedIn } = useAuthContext();
   const router = useRouter();
 
   useEffect(() => {
-    if (loggedIn) {
+    if (!loggedIn) {
       router.push("/");
     }
   }, [loggedIn]);
@@ -17,7 +16,7 @@ export default function SignUp() {
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        <h2 className={styles.header}>Sign up</h2>
+        <h2 className={styles.header}>Create a quiz</h2>
         <div
           style={{
             flexDirection: "column",
@@ -27,25 +26,32 @@ export default function SignUp() {
           }}
         >
           <div className={styles.inputContainer}>
-            <text className={styles.label}>Username</text>
+            <text className={styles.label}>Topic</text>
             <input className={styles.input} type="text" />
           </div>
           <div className={styles.inputContainer}>
-            <text className={styles.label}>Email</text>
-            <input className={styles.input} type="email" />
+            <text className={styles.label}>Difficulty</text>
+            <select className={styles.input}>
+              <option value="">Select difficulty</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
           </div>
           <div className={styles.inputContainer}>
-            <text className={styles.label}>Password</text>
-            <input className={styles.input} type="password" />
+            <text className={styles.label}>Number of questions</text>
+            <input className={styles.input} type="number" />
           </div>
-          <div className={styles.inputContainer}>
-            <text className={styles.label}>Confirm password</text>
-            <input className={styles.input} type="password" />
+          <div className={styles.buttonContainer}>
+            <button
+              className={styles.button}
+              onClick={() => {
+                console.log("generating quiz");
+              }}
+            >
+              Submit
+            </button>
           </div>
-          <button className={styles.button}>Sign Up</button>
-          <p>
-            Already have an account? <Link href={"/login"}>Log in</Link>
-          </p>
         </div>
       </div>
     </div>
