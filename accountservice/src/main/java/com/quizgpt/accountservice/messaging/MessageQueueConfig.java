@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MessagQueueConfig {
+public class MessageQueueConfig {
 
     @Bean
     public ConnectionFactory connectionFactory() {
