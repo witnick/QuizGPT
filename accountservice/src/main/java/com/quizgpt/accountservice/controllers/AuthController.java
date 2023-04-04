@@ -12,6 +12,7 @@ import com.quizgpt.accountservice.security.services.UserDetailsImpl;
 import com.quizgpt.accountservice.models.User;
 import com.quizgpt.accountservice.repsository.UserRepository;
 import jakarta.validation.Valid;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -41,6 +43,9 @@ public class AuthController {
 
     @Autowired
     PasswordEncoder encoder;
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -59,11 +64,16 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        ResponseEntity<JwtResponse> response = ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles));
+
+        // Publish a message to a RabbitMQ exchange
+        rabbitTemplate.convertAndSend("user.signin", response);
+
+        return response;
     }
 
     @PostMapping("/signup")
@@ -118,6 +128,12 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        ResponseEntity<MessageResponse> response
+                = ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
+        // Publish a message to a RabbitMQ exchange
+        rabbitTemplate.convertAndSend("user.signup", response);
+
+        return response;
     }
 }
