@@ -2,7 +2,9 @@ package com.quizgpt.accountservice.payload.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class LoginRequest {
+import java.io.Serializable;
+
+public class LoginRequest implements Serializable {
     @NotBlank
     private String username;
 

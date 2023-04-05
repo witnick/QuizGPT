@@ -1,5 +1,6 @@
 package com.quizgpt.accountservice.controllers;
 
+import com.quizgpt.accountservice.messaging.MessageQueueConfig;
 import com.quizgpt.accountservice.models.ERole;
 import com.quizgpt.accountservice.models.Role;
 import com.quizgpt.accountservice.payload.request.LoginRequest;
@@ -12,6 +13,7 @@ import com.quizgpt.accountservice.security.services.UserDetailsImpl;
 import com.quizgpt.accountservice.models.User;
 import com.quizgpt.accountservice.repsository.UserRepository;
 import jakarta.validation.Valid;
+import org.aspectj.bridge.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +47,7 @@ public class AuthController {
     PasswordEncoder encoder;
 
     @Autowired
-    RabbitTemplate rabbitTemplate;
+    MessageQueueConfig messageQueueConfig;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -70,8 +72,9 @@ public class AuthController {
                 userDetails.getEmail(),
                 roles));
 
+
         // Publish a message to a RabbitMQ exchange
-        rabbitTemplate.convertAndSend("user.signin", response);
+        messageQueueConfig.rabbitTemplate().convertAndSend("user.auth.signin", response);
 
         return response;
     }
@@ -132,7 +135,7 @@ public class AuthController {
                 = ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
         // Publish a message to a RabbitMQ exchange
-        rabbitTemplate.convertAndSend("user.signup", response);
+        messageQueueConfig.rabbitTemplate().convertAndSend("user.auth.signup", response);
 
         return response;
     }
