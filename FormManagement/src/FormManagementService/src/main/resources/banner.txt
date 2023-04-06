@@ -1,0 +1,26 @@
+
+     QQQQQQQQQ                         iiii                           GGGGGGGGGGGGGPPPPPPPPPPPPPPPPP   TTTTTTTTTTTTTTTTTTTTTTT
+   QQ:::::::::QQ                      i::::i                       GGG::::::::::::GP::::::::::::::::P  T:::::::::::::::::::::T
+ QQ:::::::::::::QQ                     iiii                      GG:::::::::::::::GP::::::PPPPPP:::::P T:::::::::::::::::::::T
+Q:::::::QQQ:::::::Q                                             G:::::GGGGGGGG::::GPP:::::P     P:::::PT:::::TT:::::::TT:::::T
+Q::::::O   Q::::::Quuuuuu    uuuuuu  iiiiiii zzzzzzzzzzzzzzzzz G:::::G       GGGGGG  P::::P     P:::::PTTTTTT  T:::::T  TTTTTT
+Q:::::O     Q:::::Qu::::u    u::::u  i:::::i z:::::::::::::::zG:::::G                P::::P     P:::::P        T:::::T
+Q:::::O     Q:::::Qu::::u    u::::u   i::::i z::::::::::::::z G:::::G                P::::PPPPPP:::::P         T:::::T
+Q:::::O     Q:::::Qu::::u    u::::u   i::::i zzzzzzzz::::::z  G:::::G    GGGGGGGGGG  P:::::::::::::PP          T:::::T
+Q:::::O     Q:::::Qu::::u    u::::u   i::::i       z::::::z   G:::::G    G::::::::G  P::::PPPPPPPPP            T:::::T
+Q:::::O     Q:::::Qu::::u    u::::u   i::::i      z::::::z    G:::::G    GGGGG::::G  P::::P                    T:::::T
+Q:::::O  QQQQ:::::Qu::::u    u::::u   i::::i     z::::::z     G:::::G        G::::G  P::::P                    T:::::T
+Q::::::O Q::::::::Qu:::::uuuu:::::u   i::::i    z::::::z       G:::::G       G::::G  P::::P                    T:::::T
+Q:::::::QQ::::::::Qu:::::::::::::::uui::::::i  z::::::zzzzzzzz  G:::::GGGGGGGG::::GPP::::::PP                TT:::::::TT
+ QQ::::::::::::::Q  u:::::::::::::::ui::::::i z::::::::::::::z   GG:::::::::::::::GP::::::::P                T:::::::::T
+   QQ:::::::::::Q    uu::::::::uu:::ui::::::iz:::::::::::::::z     GGG::::::GGG:::GP::::::::P                T:::::::::T
+     QQQQQQQQ::::QQ    uuuuuuuu  uuuuiiiiiiiizzzzzzzzzzzzzzzzz        GGGGGG   GGGGPPPPPPPPPP                TTTTTTTTTTT
+             Q:::::Q
+              QQQQQQ
+
+
+
+
+
+${application.title} ${application.version}
+Powered by Spring Boot ${spring-boot.version}
