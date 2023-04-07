@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class QuizAttemptDto {
-    public String quizAttemptId;
+    public Long quizAttemptId;
     public int quizId;
 
     public List<UserAnswer> userAnswerList;

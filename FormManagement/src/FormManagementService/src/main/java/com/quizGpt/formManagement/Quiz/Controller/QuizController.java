@@ -1,10 +1,13 @@
 package com.quizGpt.formManagement.Quiz.Controller;
 
 import com.quizGpt.formManagement.Quiz.Dto.QuestionDto;
+import com.quizGpt.formManagement.Quiz.Dto.QuizAttemptDto;
 import com.quizGpt.formManagement.Quiz.Dto.QuizDto;
 import com.quizGpt.formManagement.Quiz.Entity.Question;
 import com.quizGpt.formManagement.Quiz.Entity.Quiz;
+import com.quizGpt.formManagement.Quiz.Entity.QuizAttempt;
 import com.quizGpt.formManagement.Quiz.Exception.QuestionNotFoundException;
+import com.quizGpt.formManagement.Quiz.Exception.QuizAttemptNotFoundException;
 import com.quizGpt.formManagement.Quiz.Exception.QuizNotFoundException;
 import com.quizGpt.formManagement.Quiz.Repository.QuizRepository;
 import com.quizGpt.formManagement.Quiz.Services.IQuizService;
@@ -107,10 +110,48 @@ public class QuizController {
     }
 
     @DeleteMapping("/questions/{id}")
-    public void DeleteQuestion(@PathVariable Long id) throws QuestionNotFoundException {
+    public void DeleteQuestion(@PathVariable Long id) {
         quizService.DeleteQuestion(id);
     }
 
     ///Quiz Attempt
+    @GetMapping("/quizAttempts")
+    public List<QuizAttemptDto> GetAllQuizAttempts(){
+        List<QuizAttemptDto> quizAttemptDtos = new ArrayList<>();
+        List<QuizAttempt> quizAttempts = this.quizService.GetAllQuizAttempts();
+
+        for (QuizAttempt quizAttempt : quizAttempts) {
+            QuizAttemptDto questionDto = modelMapper.map(quizAttempt, QuizAttemptDto.class);
+            quizAttemptDtos.add(questionDto);
+        }
+
+        return quizAttemptDtos;
+    }
+
+    @GetMapping("/quizAttempt/{id}")
+    public QuizAttemptDto GetQuizAttempt(@PathVariable Long id) throws QuizAttemptNotFoundException {
+        QuizAttempt quizAttempt =  quizService.GetQuizAttemptById(id);
+        var quizAttemptDto = modelMapper.map(quizAttempt, QuizAttemptDto.class);
+        return quizAttemptDto;
+    }
+
+    @PostMapping("/quizAttempt")
+    public QuizAttemptDto createQuizAttempt(@RequestBody QuizAttemptDto newQuizAttempt) {
+        var quizAttempt = modelMapper.map(newQuizAttempt, QuizAttempt.class);
+        newQuizAttempt = modelMapper.map(quizService.SaveQuizAttempt(quizAttempt), QuizAttemptDto.class);
+        return newQuizAttempt;
+    }
+
+    @PutMapping("/quizAttempt")
+    public void updateQuizAttempt(@RequestBody @NotNull QuizAttemptDto quizAttemptRequest) throws QuizAttemptNotFoundException {
+        QuizAttempt quizAttempt = quizService.GetQuizAttemptById(quizAttemptRequest.getQuizAttemptId());
+        var quizAttemptToUpdate = modelMapper.map(quizAttempt, QuizAttempt.class);
+        quizService.SaveQuizAttempt(quizAttemptToUpdate);
+    }
+
+    @DeleteMapping("/quizAttempt/{id}")
+    public void DeleteQuizAttempt(@PathVariable Long id){
+        quizService.DeleteQuizAttempt(id);
+    }
 }
 
