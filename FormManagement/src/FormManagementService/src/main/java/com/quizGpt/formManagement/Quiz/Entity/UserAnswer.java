@@ -15,7 +15,7 @@ import lombok.ToString;
 public class UserAnswer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     public Long answerId;
 
     public int userId;

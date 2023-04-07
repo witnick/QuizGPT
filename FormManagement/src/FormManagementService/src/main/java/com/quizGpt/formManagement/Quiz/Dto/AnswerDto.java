@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class AnswerDto {
     private Long answerId;
+    private Long questionId;
     private String text;
     private Integer value;
 }

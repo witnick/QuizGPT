@@ -19,19 +19,18 @@ import java.util.List;
 public class Question {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long questionId;
     private String text;
     private QuestionType type;
     private boolean isRequired;
     private int ordering;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
     @OneToMany(targetEntity = Option.class, cascade = CascadeType.ALL)
     @JoinColumn( name="questionId_fk", referencedColumnName = "questionId")
     private List<Option> options;
-    @OneToMany(targetEntity = Question.class, cascade = CascadeType.ALL)
+
+    @OneToMany(targetEntity = Answer.class, cascade = CascadeType.ALL)
     @JoinColumn( name="questionId_fk", referencedColumnName = "questionId")
     private List<Answer> answers;
 }

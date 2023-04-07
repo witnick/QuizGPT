@@ -16,12 +16,9 @@ import java.time.LocalDateTime;
 @Table(name = "Option")
 public class Option {
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long optionId;
-    private Long questionId;
     private String text;
     private Integer value;
     private int ordering;
-    private LocalDateTime  createdAt;
-    private LocalDateTime updatedAt;
 }

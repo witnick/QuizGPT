@@ -13,9 +13,8 @@ import lombok.ToString;
 @ToString
 @Table(name = "Answer")
 public class Answer {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long answerId;
     private String text;
     private Integer value;

@@ -1,14 +1,11 @@
 package com.quizGpt.formManagement.Quiz.Dto;
 
 import com.quizGpt.formManagement.Quiz.Common.QuestionType;
-import com.quizGpt.formManagement.Quiz.Entity.Answer;
-import com.quizGpt.formManagement.Quiz.Entity.Option;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -16,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class QuestionDto {
-    private Long Id;
+    private Long questionId;
     private String text;
     private QuestionType type;
     private boolean isRequired;

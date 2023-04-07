@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -16,12 +17,14 @@ import java.util.List;
 @Table(name = "QuizAttempt")
 public class QuizAttempt {
     @Id
-    @GeneratedValue
-    public Long quizAttemptId;
-    public Long quizId;
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long quizAttemptId;
+    private Long quizId;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @OneToMany(targetEntity = UserAnswer.class, cascade = CascadeType.ALL)
     @JoinColumn( name = "quizAttemptId_fk", referencedColumnName = "quizAttemptId")
-    public List<UserAnswer> userAnswerList;
+    private List<UserAnswer> userAnswerList;
 
 }
