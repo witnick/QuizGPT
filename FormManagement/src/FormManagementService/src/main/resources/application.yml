@@ -8,6 +8,13 @@ spring:
     url: jdbc:postgresql://localhost:5432/quizgpt
     username: admin
     password: password
+
+#production postgresql
+#  datasource:
+#    url: jdbc:postgresql://${postgresql.host}:${postgresql.port}/quizgpt
+#    username: ${postgresql.username}
+#    password: ${postgresql.password}
+
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -16,6 +23,18 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+#
+#  rabbitmq:
+#    host: ${rabbitmq.host}
+#    port: ${rabbitmq.port}
+#    username: ${rabbitmq.username}
+#    password: ${rabbitmq.password}
   main:
     web-application-type: servlet
 
