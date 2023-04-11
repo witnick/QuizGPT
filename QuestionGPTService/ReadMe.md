@@ -1,4 +1,4 @@
-[Quick flask guide](https://flask.palletsprojects.com/en/2.2.x/quickstart/)
+# FINAL DEPLOYED VERSION is in this repository: https://github.com/Fryingpannn/QuizGPTService
 
 # Prerequisites
 
