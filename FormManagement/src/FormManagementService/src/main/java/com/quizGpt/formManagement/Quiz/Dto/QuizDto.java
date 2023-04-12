@@ -1,6 +1,7 @@
 package com.quizGpt.formManagement.Quiz.Dto;
 
 
+import com.quizGpt.formManagement.ChatGpt.Entity.Conversation;
 import com.quizGpt.formManagement.Quiz.Common.QuizStatus;
 import com.quizGpt.formManagement.Quiz.Entity.Question;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,6 @@ public class QuizDto {
     private String  UpdatedAt;
 
     private List<QuestionDto> Questions;
+    private Conversation GptConversation;
 
 }

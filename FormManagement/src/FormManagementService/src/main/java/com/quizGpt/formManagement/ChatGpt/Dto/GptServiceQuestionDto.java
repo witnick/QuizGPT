@@ -12,8 +12,13 @@ import lombok.ToString;
 @ToString
 public class GptServiceQuestionDto {
     //quizId
-    @JsonProperty("id")
-    private int id;
+    private Long Id;
+    @JsonProperty("conversationId")
+    private Long ConvoId;
+    @JsonProperty("quizId")
+    private Long QuizId;
+    @JsonProperty("number")
+    private int Number;
     @JsonProperty("text")
     private String Text;
     @JsonProperty("sender")

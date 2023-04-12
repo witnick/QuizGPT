@@ -1,5 +1,6 @@
 package com.quizGpt.formManagement.Quiz.Entity;
 
+import com.quizGpt.formManagement.ChatGpt.Entity.Conversation;
 import com.quizGpt.formManagement.Quiz.Common.QuizStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,6 +20,7 @@ public class Quiz {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long Id;
+    private Long UserId;
     private String Name;
     private String Description;
     private QuizStatus Status;
@@ -30,4 +32,9 @@ public class Quiz {
     @OneToMany(targetEntity = Question.class, cascade = CascadeType.ALL)
     @JoinColumn( name="quizId_fk", referencedColumnName = "Id")
     private List<Question> Questions;
+
+    @OneToOne(targetEntity = Conversation.class, cascade = CascadeType.ALL)
+    @JoinColumn( name="quizId_fk", referencedColumnName = "Id")
+    private Conversation GptConversation;
+
 }

@@ -23,12 +23,13 @@ import java.util.List;
 @RestController
 @RequestMapping( "api/v1")
 public class QuizController {
-    @Autowired
+
     private ModelMapper modelMapper;
 
     private IQuizService quizService;
 
-    QuizController(IQuizService quizService) {
+    QuizController(ModelMapper modelMapper, IQuizService quizService) {
+        this.modelMapper = modelMapper;
         this.quizService = quizService;
     }
 

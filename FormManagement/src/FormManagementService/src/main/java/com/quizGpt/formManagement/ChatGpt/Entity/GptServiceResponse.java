@@ -18,10 +18,11 @@ import java.util.List;
 @Table(name = "GptServiceResponse")
 public class GptServiceResponse {
     @Id
-    private int id;
-    private int quizId;
-    private int Number;
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long Id;
+    private Long ConversationId; //conversationId
+    private Long Number;
     @OneToMany(targetEntity = GptQa.class, cascade = CascadeType.ALL)
-    @JoinColumn( name="id_fk", referencedColumnName = "id")
+    @JoinColumn( name="id_fk", referencedColumnName = "Id")
     private List<GptQa> Results;
 }

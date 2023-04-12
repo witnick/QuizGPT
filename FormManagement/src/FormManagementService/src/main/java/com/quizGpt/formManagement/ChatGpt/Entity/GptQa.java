@@ -1,10 +1,7 @@
 package com.quizGpt.formManagement.ChatGpt.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +15,8 @@ import lombok.ToString;
 @Table(name = "GptQestionAnswer")
 public class GptQa {
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
-    @JsonProperty("answer")
     private String Answer;
-    @JsonProperty("question")
     private String Question;
 }
