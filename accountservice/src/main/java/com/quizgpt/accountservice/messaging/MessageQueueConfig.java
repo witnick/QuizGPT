@@ -21,7 +21,7 @@ public class MessageQueueConfig {
     private String host;
 
     @Value("${spring.rabbitmq.port}")
-    private int port;
+    private Integer port;
 
     @Value("${spring.rabbitmq.username}")
     private String username;
@@ -29,14 +29,17 @@ public class MessageQueueConfig {
     @Value("${spring.rabbitmq.password}")
     private String password;
 
+    @Value("${spring.rabbitmq.virtual-host}")
+    private String virtualHost;
 
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
         connectionFactory.setHost(host);
-        connectionFactory.setPort(port);
+        connectionFactory.setPort(Integer.valueOf(port));
         connectionFactory.setUsername(username);
         connectionFactory.setPassword(password);
+        connectionFactory.setVirtualHost(virtualHost);
         logger.debug("RabbitMQ connection factory created");
         System.out.println("RabbitMQ connection factory created");
         return connectionFactory;
@@ -46,7 +49,7 @@ public class MessageQueueConfig {
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
         rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
-        rabbitTemplate.setExchange("user.auth");
+//        rabbitTemplate.setExchange("user.auth");
         return rabbitTemplate;
     }
 

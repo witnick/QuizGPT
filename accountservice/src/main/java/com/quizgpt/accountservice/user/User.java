@@ -1,5 +1,7 @@
-package com.quizgpt.accountservice.models;
+package com.quizgpt.accountservice.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.quizgpt.accountservice.role.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

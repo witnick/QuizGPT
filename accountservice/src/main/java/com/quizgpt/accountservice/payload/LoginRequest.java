@@ -1,4 +1,4 @@
-package com.quizgpt.accountservice.payload.request;
+package com.quizgpt.accountservice.payload;
 
 import jakarta.validation.constraints.NotBlank;
 

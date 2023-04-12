@@ -1,6 +1,5 @@
-package com.quizgpt.accountservice.repsository;
+package com.quizgpt.accountservice.user;
 
-import com.quizgpt.accountservice.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsByUsername(String username);
 
     Boolean existsByEmail(String email);
+
+    Optional<User> findByEmail(String email);
 }

@@ -1,7 +1,7 @@
 package com.quizgpt.accountservice.security.services;
 
-import com.quizgpt.accountservice.models.User;
-import com.quizgpt.accountservice.repsository.UserRepository;
+import com.quizgpt.accountservice.user.User;
+import com.quizgpt.accountservice.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

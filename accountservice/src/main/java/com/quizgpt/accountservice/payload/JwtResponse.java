@@ -1,4 +1,4 @@
-package com.quizgpt.accountservice.payload.response;
+package com.quizgpt.accountservice.payload;
 
 import java.util.List;
 

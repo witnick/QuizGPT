@@ -1,4 +1,4 @@
-package com.quizgpt.accountservice.models;
+package com.quizgpt.accountservice.role;
 
 public enum ERole {
     ROLE_USER,

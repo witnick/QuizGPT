@@ -1,4 +1,4 @@
-package com.quizgpt.accountservice.payload.request;
+package com.quizgpt.accountservice.payload;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
-public class SignupRequest implements Serializable {
+public class CreateUserRequest implements Serializable {
     @NotBlank
     @Size(min = 3, max = 20)
     private String username;
