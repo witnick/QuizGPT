@@ -15,10 +15,10 @@ export default function Home() {
           <>
             <h2 className={styles.headerText}>Welcome to the QuizGPT</h2>
             <p className={styles.text}>
-              Our app is designed to help you create engaging and interactive
+              {`Our app is designed to help you create engaging and interactive
               quizzes for your audience. Whether you're a teacher looking to
               create a fun quiz for your students, or a marketer looking to
-              engage your audience with a quiz, our app has you covered.
+              engage your audience with a quiz, our app has you covered.`}
             </p>
             <a
               href="https://openai.com/blog/chatgpt"

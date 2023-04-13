@@ -7,7 +7,7 @@ export default function Login() {
   const { loggedIn, login } = useAuthContext();
   const router = useRouter();
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
@@ -29,12 +29,12 @@ export default function Login() {
           }}
         >
           <div className={styles.inputContainer}>
-            <text className={styles.label}>Email</text>
+            <text className={styles.label}>Username</text>
             <input
               className={styles.input}
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className={styles.inputContainer}>
