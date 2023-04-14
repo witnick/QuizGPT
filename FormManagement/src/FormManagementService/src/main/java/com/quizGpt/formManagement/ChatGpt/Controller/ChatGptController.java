@@ -7,7 +7,10 @@ import com.quizGpt.formManagement.ChatGpt.Entity.GptServiceQuestion;
 import com.quizGpt.formManagement.ChatGpt.Exception.ConversationNotFoundException;
 import com.quizGpt.formManagement.ChatGpt.Service.GptService;
 import com.quizGpt.formManagement.ChatGpt.Service.RabbitMqService;
+import com.quizGpt.formManagement.Quiz.Dto.QuizDto;
+import com.quizGpt.formManagement.Quiz.Entity.Quiz;
 import com.quizGpt.formManagement.Quiz.Exception.QuizNotFoundException;
+import com.quizGpt.formManagement.Quiz.Services.QuizService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +27,13 @@ public class ChatGptController {
 
     private ModelMapper mapper;
 
-    public ChatGptController(RabbitMqService rabbitMqService, GptService gptService, ModelMapper mapper) {
+    private QuizService quizService;
+
+    public ChatGptController(RabbitMqService rabbitMqService, GptService gptService, ModelMapper mapper, QuizService quizService) {
         this.rabbitMqService = rabbitMqService;
         this.gptService = gptService;
         this.mapper = mapper;
+        this.quizService = quizService;
     }
 
     @GetMapping("/conversation/{id}")
@@ -43,9 +49,12 @@ public class ChatGptController {
     }
 
     @PostMapping("/queryGpt")
-    public ResponseEntity<ConversationDto> sendMessage(@RequestBody GptServiceQuestionDto questionDto) throws QuizNotFoundException {
+    public ResponseEntity<ConversationDto> sendMessage(@RequestBody QuizDto quizDto) throws QuizNotFoundException {
         //create conversation if it doesn't exist
-        Conversation conversation = gptService.CreateOrReadConversationByQuizId(questionDto.getQuizId());
+        Quiz quiz = quizService.SaveQuiz(mapper.map(quizDto, Quiz.class));
+            Conversation conversation = gptService.CreateOrReadConversationByQuizId(quiz.getId());
+
+        GptServiceQuestionDto questionDto = quizDto.getGptRequest();
         questionDto.setConvoId(conversation.getId());
         GptServiceQuestion question = mapper.map(questionDto, GptServiceQuestion.class);
         question.setConversationId(conversation.getId());

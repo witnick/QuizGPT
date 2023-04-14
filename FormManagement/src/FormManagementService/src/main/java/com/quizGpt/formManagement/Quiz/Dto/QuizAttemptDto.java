@@ -15,7 +15,7 @@ import java.util.List;
 public class QuizAttemptDto {
     public Long quizAttemptId;
     public int quizId;
-
+    public String username;
     public List<UserAnswer> userAnswerList;
 
 }

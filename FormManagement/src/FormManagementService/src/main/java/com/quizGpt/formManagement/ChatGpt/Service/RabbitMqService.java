@@ -36,17 +36,9 @@ public class RabbitMqService implements  IMessageProducer, IMessageConsumer {
     }
     @Value("${rabbitmq.gpt.exchange.name}")
     private String gptExchangeName;
-    @Value("${rabbitmq.auth.exchange.name}")
-    private String authExchangeName;
 
     @Value("${rabbitmq.gpt.routing.key}")
     private String gptRoutingKey;
-
-    @Value("${rabbitmq.auth.routing.key.loginQuery}")
-    private String authLoginRoutingKey;
-
-    @Value("${rabbitmq.auth.routing.key.singupQuery}")
-    private String authSignupRoutingKey;
 
     private static  final Logger LOGGER = LoggerFactory.getLogger(RabbitMqService.class);
 

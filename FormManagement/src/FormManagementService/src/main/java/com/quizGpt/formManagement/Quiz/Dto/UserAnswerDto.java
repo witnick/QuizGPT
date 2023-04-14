@@ -12,7 +12,6 @@ import lombok.ToString;
 public class UserAnswerDto {
 
     public Long userAnswerId;
-    public int userId;
     public int questionId;
     public String text;
     public Integer value;

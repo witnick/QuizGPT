@@ -1,6 +1,7 @@
 package com.quizGpt.formManagement.Quiz.Dto;
 
 
+import com.quizGpt.formManagement.ChatGpt.Dto.GptServiceQuestionDto;
 import com.quizGpt.formManagement.ChatGpt.Entity.Conversation;
 import com.quizGpt.formManagement.Quiz.Common.QuizStatus;
 import com.quizGpt.formManagement.Quiz.Entity.Question;
@@ -17,6 +18,7 @@ import java.util.List;
 @ToString
 public class QuizDto {
     private Long Id;
+    private String Username;
     private String Name;
     private String Description;
     private QuizStatus Status;
@@ -26,5 +28,7 @@ public class QuizDto {
 
     private List<QuestionDto> Questions;
     private Conversation GptConversation;
+
+    private GptServiceQuestionDto GptRequest;
 
 }

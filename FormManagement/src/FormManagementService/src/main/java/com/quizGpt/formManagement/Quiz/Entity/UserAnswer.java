@@ -18,7 +18,6 @@ public class UserAnswer {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     public Long userAnswerId;
 
-    public int userId;
     public int questionId;
     public String text;
     public Integer value;

@@ -20,7 +20,7 @@ public class Quiz {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long Id;
-    private Long UserId;
+    private String Username;
     private String Name;
     private String Description;
     private QuizStatus Status;

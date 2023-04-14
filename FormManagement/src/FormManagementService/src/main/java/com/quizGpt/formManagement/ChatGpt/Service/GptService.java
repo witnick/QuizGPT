@@ -34,6 +34,7 @@ public class GptService implements IGptService{
 
     @Override
     public Conversation CreateOrReadConversationByQuizId(Long quizId) throws QuizNotFoundException {
+
         var quiz = quizRepository.findById(quizId).orElseThrow(() -> new QuizNotFoundException("Quiz not found with id: " + quizId));
         var conversation = quiz.getGptConversation();
         if(conversation == null){

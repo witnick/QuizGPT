@@ -20,6 +20,7 @@ public class QuizAttempt {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long quizAttemptId;
     private Long quizId;
+    public String username;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
