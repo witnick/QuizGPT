@@ -10,23 +10,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class SignUpResponseDto {
-    private Headers headers;
-    private Body body;
+    //private Headers headers;
+    private BodyDto bodyDto;
     private String statusCode;
     private int statusCodeValue;
-
-    @Data
-    @NoArgsConstructor
-    public class Headers {
-        // Add fields for headers if necessary
-    }
-
-    @Data
-    @NoArgsConstructor
-    public class Body {
-        private int id;
-        private String username;
-        private String password;
-        private String email;
-    }
 }

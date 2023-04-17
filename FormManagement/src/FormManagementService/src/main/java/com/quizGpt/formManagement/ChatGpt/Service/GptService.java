@@ -3,7 +3,6 @@ package com.quizGpt.formManagement.ChatGpt.Service;
 import com.quizGpt.formManagement.ChatGpt.ConversationRepository;
 import com.quizGpt.formManagement.ChatGpt.Dto.ConversationDto;
 import com.quizGpt.formManagement.ChatGpt.Entity.Conversation;
-import com.quizGpt.formManagement.ChatGpt.Entity.GptServiceResponse;
 import com.quizGpt.formManagement.ChatGpt.Exception.ConversationNotFoundException;
 import com.quizGpt.formManagement.Quiz.Exception.QuizNotFoundException;
 import com.quizGpt.formManagement.Quiz.Repository.QuizRepository;
