@@ -34,3 +34,4 @@ build/
 
 ### Secret Stuff ###
 .env
+build-image.sh
