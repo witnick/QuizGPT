@@ -10,7 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class LoginResponseDto {
-    private BodyDto bodyDto;
+    private BodyDto body;
     //private Headers headers;
     private String statusCode;
     private int statusCodeValue;

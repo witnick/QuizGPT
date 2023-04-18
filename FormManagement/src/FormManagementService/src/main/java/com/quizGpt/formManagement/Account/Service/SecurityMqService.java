@@ -16,6 +16,8 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 @Service
@@ -75,27 +77,56 @@ public class SecurityMqService implements ISecurityMqService{
         return correlationId;
     }
 
+//    @RabbitListener(queues = {"${rabbitmq.auth.queue.login.name}"})
+//    public void GetLoginMessageFromMqServer(Message message) {
+//        SaveMessageToDb(message);
+//    }
+//
+//    @RabbitListener(queues = {"${rabbitmq.auth.queue.signup.name}"})
+//    public void GetSignUpMessageToMqServer(Message message) {
+//        SaveMessageToDb(message);
+//    }
+
     @RabbitListener(queues = {"${rabbitmq.auth.queue.login.name}"})
-    public void GetLoginMessageFromMqServer(Message message) {
-        SaveMessageToDb(message);
+    public void GetLoginMessageFromMqServer(Object message) {
+        try {
+            SaveMessageToDb((Message)message);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @RabbitListener(queues = {"${rabbitmq.auth.queue.signup.name}"})
-    public void GetSignUpMessageToMqServer(Message message) {
-        SaveMessageToDb(message);
+    public void GetSignUpMessageToMqServer(Object message) {
+        try {
+            SaveMessageToDb((Message)message);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private void SaveMessageToDb(Message message){
+    private void SaveMessageToDb(Message message) throws UnsupportedEncodingException {
         String correlationId = message.getMessageProperties().getCorrelationId();
+        if(correlationId == null){
+            correlationId = UUID.randomUUID().toString();
+        }
+        // Handle user signup message
+        String messageBody = new String(message.getBody(), StandardCharsets.UTF_8);
+        LOGGER.info("Received message: " + message);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+
         // Get the message payload as byte array
-        byte[] payload = message.getBody();
+        //byte[] payload = message.getBody();
 
         // Convert the byte array to string
-        String jsonString = new String(payload);
+        //String jsonString = new String(payload);
 
+        String jsonString = new String(message.getBody(), "UTF-8");
         try {
-            LOGGER.info(String.format("correlationId received -> %s", correlationId));
-            LOGGER.info(String.format("object received -> %s", jsonString));
+            LOGGER.info(String.format("correlationId saved -> %s", correlationId));
+            LOGGER.info(String.format("object saved -> %s", jsonString));
 
             responseRepository.save( new MqResponse(correlationId, jsonString));
         } catch (Exception e) {

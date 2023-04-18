@@ -26,6 +26,19 @@ public class AccountService implements IAccountService{
         }
     }
 
+    @Override
+    public MqResponse FindFirstByResponseContaining(String username) {
+        // Use the findOne() method to retrieve the MqResponse entity by CorrelationId
+        Optional<MqResponse> optionalMqResponse = Optional.ofNullable(mqResponseRepository.findFirstByResponseContaining(username));
+
+        // Check if the entity was found and return it, otherwise return null or throw an exception as needed
+        if (optionalMqResponse.isPresent()) {
+            return optionalMqResponse.get();
+        } else {
+            return null; // or throw an exception
+        }
+    }
+
 
     public void Delete(MqResponse response) {
         mqResponseRepository.delete(response);

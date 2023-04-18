@@ -16,9 +16,9 @@ import org.jetbrains.annotations.NotNull;
 @Table(name = "MqResponse")
 public class MqResponse {
     @Id
-    private String CorrelationId;
+    private String correlationId;
     @NotNull
     @Column(length = Integer.MAX_VALUE)
-    private String Response;
+    private String response;
 
 }

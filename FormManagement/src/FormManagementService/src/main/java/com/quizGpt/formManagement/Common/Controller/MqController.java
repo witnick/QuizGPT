@@ -1,5 +1,6 @@
 package com.quizGpt.formManagement.Common.Controller;
 
+import com.quizGpt.formManagement.Account.Entity.MqResponse;
 import com.quizGpt.formManagement.Account.Service.AccountService;
 
 import java.util.concurrent.CompletableFuture;
@@ -12,7 +13,7 @@ public class MqController {
     public MqController(AccountService accountService){
         this.accountService = accountService;
     }
-    protected Future<String> GetResponseOrWait(String correlationId) throws TimeoutException {
+    protected Future<String> GetResponseOrWait(String correlationIdOrUsername) throws TimeoutException {
         int totalWaitTime = 15; // total wait time in seconds
         int waitInterval = 1; // wait interval in seconds
         CompletableFuture<String> futureResponse = new CompletableFuture<>();
@@ -21,11 +22,16 @@ public class MqController {
 
         while (secondsElapsed < totalWaitTime) {
             //check db
-            var response = accountService.FindMqResponseByCorrelationId(correlationId);
+            MqResponse response = accountService.FindMqResponseByCorrelationId(correlationIdOrUsername);
+            if(response == null)
+                response = accountService.FindFirstByResponseContaining(correlationIdOrUsername);
+
+
             if(response != null) {
-                futureResponse.complete(response.getResponse());
-                //accountService.Delete(response);
-                System.out.println("response : " + response );
+                String cleanResponse = response.getResponse().replace("response=", "");
+                System.out.println("response found : " + cleanResponse );
+                futureResponse.complete(cleanResponse);
+                accountService.Delete(response);
                 return futureResponse;
             }
             // Perform the operation or logic here that you want to repeat every second
@@ -42,6 +48,6 @@ public class MqController {
             // Increment the seconds elapsed counter
             secondsElapsed += waitInterval;
         }
-        throw  new TimeoutException("Could not retreive "+correlationId+" in time");
+        throw  new TimeoutException("Could not retreive "+correlationIdOrUsername+" in time");
     }
 }

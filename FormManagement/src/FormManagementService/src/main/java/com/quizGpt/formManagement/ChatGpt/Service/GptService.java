@@ -1,6 +1,6 @@
 package com.quizGpt.formManagement.ChatGpt.Service;
 
-import com.quizGpt.formManagement.ChatGpt.ConversationRepository;
+import com.quizGpt.formManagement.ChatGpt.Repository.ConversationRepository;
 import com.quizGpt.formManagement.ChatGpt.Dto.ConversationDto;
 import com.quizGpt.formManagement.ChatGpt.Entity.Conversation;
 import com.quizGpt.formManagement.ChatGpt.Exception.ConversationNotFoundException;

@@ -32,15 +32,15 @@ public class RabbitMqConfig {
     //Queues
     @Bean
     public Queue GptResponseQueue(){
-        return new Queue(gptQueryQueueName);
+        return new Queue(gptQueryQueueName, false);
     }
     @Bean
     public Queue AuthLoginResponseQueue(){
-        return new Queue(authLoginResponseQueueName);
+        return new Queue(authLoginResponseQueueName, true);
     }
     @Bean
     public Queue AuthSignupResponseQueue(){
-        return new Queue(authSignupResponseQueueName);
+        return new Queue(authSignupResponseQueueName, true);
     }
 
 
@@ -63,7 +63,7 @@ public class RabbitMqConfig {
         return BindingBuilder
                 .bind(GptExchange())
                 .to(GptExchange())
-                .with(gptQueryKey);
+                .with("");
     }
 
     @Bean
@@ -72,7 +72,7 @@ public class RabbitMqConfig {
         return BindingBuilder
                 .bind(AuthLoginResponseQueue())
                 .to(AuthExchange())
-                .with(authLoginQueryKey);
+                .with("");
     }
 
     @Bean
@@ -81,7 +81,7 @@ public class RabbitMqConfig {
         return BindingBuilder
                 .bind(AuthSignupResponseQueue())
                 .to(AuthExchange())
-                .with(authSignupQueryKey);
+                .with("");
     }
 
     @Bean
@@ -92,7 +92,7 @@ public class RabbitMqConfig {
     @Bean
     public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory){
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(converter());
+        //rabbitTemplate.setMessageConverter(converter());
         return rabbitTemplate;
     }
 }

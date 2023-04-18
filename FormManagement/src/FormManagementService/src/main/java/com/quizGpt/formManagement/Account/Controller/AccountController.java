@@ -12,10 +12,7 @@ import com.quizGpt.formManagement.Common.Controller.MqController;
 import jakarta.servlet.http.HttpSession;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.ExecutionException;
@@ -40,11 +37,11 @@ public class AccountController extends MqController {
     }
 
     @PostMapping("/account/login")
-    private @NotNull ResponseEntity Login(@RequestBody LoginRequestDto request) throws JsonProcessingException, ExecutionException, InterruptedException, TimeoutException {
+    public @NotNull ResponseEntity Login(@RequestBody LoginRequestDto request) throws JsonProcessingException, ExecutionException, InterruptedException, TimeoutException {
         //send request
         String correlationId = securityMqService.SendLoginMessageToMqServer(request);
         //wait for response to be saved to db
-        var response = GetResponseOrWait(correlationId);
+        var response = GetResponseOrWait(request.getUsername());
         String res = response.get();
 
         // save user to Db with expiration
@@ -53,8 +50,8 @@ public class AccountController extends MqController {
 
             loginDto = objectMapper.readValue(res, LoginResponseDto.class);
 
-            session.setAttribute("username", loginDto.getBodyDto().getUsername());
-            session.setAttribute("roles", loginDto.getBodyDto().getRoles());
+            session.setAttribute("username", loginDto.getBody().getUsername());
+            session.setAttribute("roles", loginDto.getBody().getRoles());
 
         }
         return ResponseEntity.ok(loginDto);
@@ -62,7 +59,7 @@ public class AccountController extends MqController {
 
 
     @PostMapping("/account/testretreivingLogin")
-    private ResponseEntity Login(@RequestBody String correlationId) throws ExecutionException, InterruptedException, JsonProcessingException {
+    public ResponseEntity Login(@RequestBody String correlationId) throws ExecutionException, InterruptedException, JsonProcessingException {
 
         //wait for response to be saved to db
         Future<String> response = null;
@@ -79,19 +76,19 @@ public class AccountController extends MqController {
 
             myDto = objectMapper.readValue(res, LoginResponseDto.class);
 
-            session.setAttribute("username", myDto.getBodyDto().getUsername());
-            session.setAttribute("roles", myDto.getBodyDto().getRoles());
+            session.setAttribute("username", myDto.getBody().getUsername());
+            session.setAttribute("roles", myDto.getBody().getRoles());
             session.setAttribute("LoginExpiration", LocalDateTime.now().plusMinutes(30));
         }
         return ResponseEntity.ok(myDto);
     }
 
     @PostMapping("/account/signup")
-    private ResponseEntity Signup(@RequestBody SignUpRequestDto request) throws JsonProcessingException, ExecutionException, InterruptedException, TimeoutException {
+    public ResponseEntity Signup(@RequestBody SignUpRequestDto request) throws JsonProcessingException, ExecutionException, InterruptedException, TimeoutException {
         //send request
         String correlationId = securityMqService.SendSignUpMessageToMqServer(request);
         //wait for response to be saved to db
-        var response = GetResponseOrWait(correlationId);
+        var response = GetResponseOrWait(request.getUsername());
         String res = response.get();
 
         SignUpResponseDto signupDto = null;
@@ -103,7 +100,7 @@ public class AccountController extends MqController {
     }
 
     @PostMapping("/account/testretreivingsignup")
-    private ResponseEntity Signup(@RequestBody String correlationId) throws ExecutionException, InterruptedException, JsonProcessingException {
+    public ResponseEntity Signup(@RequestBody String correlationId) throws ExecutionException, InterruptedException, JsonProcessingException {
 
         //wait for response to be saved to db
         Future<String> response = null;
@@ -122,5 +119,9 @@ public class AccountController extends MqController {
         return ResponseEntity.ok(myDto);
     }
 
+    @GetMapping("/account/logout")
+    public void Logout(){
+        session.invalidate();
+    }
 
 }

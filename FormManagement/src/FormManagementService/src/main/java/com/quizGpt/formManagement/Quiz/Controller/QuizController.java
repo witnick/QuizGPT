@@ -146,6 +146,9 @@ public class QuizController {
     @PutMapping("/quizAttempt")
     public void updateQuizAttempt(@RequestBody @NotNull QuizAttemptDto quizAttemptRequest) throws QuizAttemptNotFoundException {
         QuizAttempt quizAttempt = quizService.GetQuizAttemptById(quizAttemptRequest.getQuizAttemptId());
+        var dateTime = LocalDateTime.now();
+        quizAttempt.setCreatedAt(dateTime);
+        quizAttempt.setUpdatedAt(dateTime);
         var quizAttemptToUpdate = modelMapper.map(quizAttempt, QuizAttempt.class);
         quizService.SaveQuizAttempt(quizAttemptToUpdate);
     }

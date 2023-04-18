@@ -2,14 +2,12 @@ package com.quizGpt.formManagement.ChatGpt.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.quizGpt.formManagement.ChatGpt.ConversationRepository;
+import com.quizGpt.formManagement.ChatGpt.Repository.ConversationRepository;
 import com.quizGpt.formManagement.ChatGpt.Dto.GptServiceQuestionDto;
 import com.quizGpt.formManagement.ChatGpt.Dto.GptServiceResponseDto;
-import com.quizGpt.formManagement.ChatGpt.Entity.Conversation;
 import com.quizGpt.formManagement.ChatGpt.Entity.GptServiceResponse;
 
 import com.quizGpt.formManagement.ChatGpt.Exception.ConversationNotFoundException;
-import com.quizGpt.formManagement.Quiz.Exception.QuestionNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
