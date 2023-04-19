@@ -11,6 +11,7 @@ import com.quizGpt.formManagement.Quiz.Exception.QuizAttemptNotFoundException;
 import com.quizGpt.formManagement.Quiz.Exception.QuizNotFoundException;
 import com.quizGpt.formManagement.Quiz.Repository.QuizRepository;
 import com.quizGpt.formManagement.Quiz.Services.IQuizService;
+import jakarta.servlet.http.HttpSession;
 import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,14 @@ public class QuizController {
 
     private IQuizService quizService;
 
-    QuizController(ModelMapper modelMapper, IQuizService quizService) {
+    private HttpSession session;
+
+    private String username;
+
+    QuizController(ModelMapper modelMapper, IQuizService quizService, HttpSession session) {
         this.modelMapper = modelMapper;
         this.quizService = quizService;
+        this.session = session;
     }
 
     ///Quiz
@@ -56,7 +62,9 @@ public class QuizController {
 
     @PostMapping("/quiz")
     public QuizDto CreateQuiz(@RequestBody QuizDto newQuiz){
+        UpdateSessionUsername();
         var quiz = modelMapper.map(newQuiz, Quiz.class);
+        quiz.setUsername(this.username);
         quiz.setCreatedAt(LocalDateTime.now());
         quiz.setUpdatedAt(LocalDateTime.now());
         newQuiz = modelMapper.map(quizService.SaveQuiz(quiz), QuizDto.class);
@@ -139,6 +147,7 @@ public class QuizController {
     @PostMapping("/quizAttempt")
     public QuizAttemptDto createQuizAttempt(@RequestBody QuizAttemptDto newQuizAttempt) {
         var quizAttempt = modelMapper.map(newQuizAttempt, QuizAttempt.class);
+        quizAttempt.setUsername(this.username);
         newQuizAttempt = modelMapper.map(quizService.SaveQuizAttempt(quizAttempt), QuizAttemptDto.class);
         return newQuizAttempt;
     }
@@ -156,6 +165,13 @@ public class QuizController {
     @DeleteMapping("/quizAttempt/{id}")
     public void DeleteQuizAttempt(@PathVariable Long id){
         quizService.DeleteQuizAttempt(id);
+    }
+
+    private void UpdateSessionUsername(){
+        if(this.session.isNew()) {
+            this.session.setAttribute("username", "anonymous");
+        }
+        this.username = (String)this.session.getAttribute("username");
     }
 }
 

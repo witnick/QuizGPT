@@ -11,6 +11,7 @@ import com.quizGpt.formManagement.Quiz.Dto.QuizDto;
 import com.quizGpt.formManagement.Quiz.Entity.Quiz;
 import com.quizGpt.formManagement.Quiz.Exception.QuizNotFoundException;
 import com.quizGpt.formManagement.Quiz.Services.QuizService;
+import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +29,16 @@ public class ChatGptController {
     private ModelMapper mapper;
 
     private QuizService quizService;
+    private HttpSession session;
+    private String username;
 
-    public ChatGptController(RabbitMqService rabbitMqService, GptService gptService, ModelMapper mapper, QuizService quizService) {
+    public ChatGptController(RabbitMqService rabbitMqService, GptService gptService, ModelMapper mapper, QuizService quizService, HttpSession session) {
         this.rabbitMqService = rabbitMqService;
         this.gptService = gptService;
         this.mapper = mapper;
         this.quizService = quizService;
+        this.session = session;
+
     }
 
     @GetMapping("/conversation/{id}")
@@ -50,6 +55,8 @@ public class ChatGptController {
 
     @PostMapping("/queryGpt")
     public ResponseEntity<ConversationDto> sendMessage(@RequestBody QuizDto quizDto) throws QuizNotFoundException {
+        UpdateSessionUsername();
+        quizDto.setUsername(this.username);
         //create conversation if it doesn't exist
         Quiz quiz = quizService.SaveQuiz(mapper.map(quizDto, Quiz.class));
             Conversation conversation = gptService.CreateOrReadConversationByQuizId(quiz.getId());
@@ -70,5 +77,12 @@ public class ChatGptController {
         //return conversation object with id
         ConversationDto conversationDto = mapper.map(conversation, ConversationDto.class);
         return ResponseEntity.ok(conversationDto);
+    }
+
+    private void UpdateSessionUsername(){
+        if(this.session.isNew()) {
+            this.session.setAttribute("username", "anonymous");
+        }
+        this.username = (String)this.session.getAttribute("username");
     }
 }
