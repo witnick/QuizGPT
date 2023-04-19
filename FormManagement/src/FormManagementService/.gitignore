@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+/build-image.sh
+/run-image.sh
+/docker-env.txt
