@@ -34,7 +34,7 @@ export default function Home() {
             <Link href="/create-quiz" className={styles.button}>
               Create a quiz
             </Link>
-            <Link href="/" className={styles.button}>
+            <Link href="/quizzes" className={styles.button}>
               Show all quizzes
             </Link>
           </div>

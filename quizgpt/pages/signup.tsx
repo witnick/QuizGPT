@@ -5,12 +5,13 @@ import { useAuthContext } from "../src/context/AuthContext";
 import styles from "../styles/form.module.css";
 
 export default function SignUp() {
-  const { loggedIn } = useAuthContext();
+  const { loggedIn, signup } = useAuthContext();
   const router = useRouter();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (loggedIn) {
@@ -18,8 +19,16 @@ export default function SignUp() {
     }
   }, [loggedIn]);
 
-  const signup = () => {
-    // todo validate?
+  const onClick = async () => {
+    try {
+      await signup(username, email, password);
+      router.push("/");
+    } catch (e) {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -61,8 +70,8 @@ export default function SignUp() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button className={styles.button} onClick={signup}>
-            Sign Up
+          <button className={styles.button} onClick={onClick}>
+            {error ? "Error" : "Sign up"}
           </button>
           <p>
             Already have an account? <Link href={"/login"}>Log in</Link>
