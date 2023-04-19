@@ -24,17 +24,18 @@ spring:
         format_sql: true
     show-sql: true
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-#
 #  rabbitmq:
-#    host: ${rabbitmq.host}
-#    port: ${rabbitmq.port}
-#    username: ${rabbitmq.username}
-#    password: ${rabbitmq.password}
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+
+    rabbitmq:
+    host: ${rabbitmq.host}
+    port: ${rabbitmq.port}
+    username: ${rabbitmq.username}
+    password: ${rabbitmq.password}
+    virtual-host: iiybcmbq
   main:
     web-application-type: servlet
 
