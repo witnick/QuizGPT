@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "adab9096-737a-4aa4-8d80-d7a15de05366",
+		"name": "QuizGpt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Quiz",
+			"item": [
+				{
+					"name": "new quiz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Quiz 1\",\r\n        \"id\": 1,\r\n        \"description\": \"This is Quiz 1\",\r\n        \"status\": \"PUBLISHED\",\r\n        \"questions\": [\r\n            {\r\n                \"questionId\": 1,\r\n                \"text\": \"What is your favorite color?\",\r\n                \"type\": \"MULTIPLE_CHOICE\",\r\n                \"order\": 0,\r\n                \"createdAt\": null,\r\n                \"updatedAt\": null,\r\n                \"options\": [\r\n                    {\r\n                        \"optionId\": 1,\r\n                        \"questionId\": null,\r\n                        \"text\": \"Red\",\r\n                        \"value\": 1,\r\n                        \"order\": 0,\r\n                        \"createdAt\": null,\r\n                        \"updatedAt\": null\r\n                    },\r\n                    {\r\n                        \"optionId\": 2,\r\n                        \"questionId\": null,\r\n                        \"text\": \"Blue\",\r\n                        \"value\": 2,\r\n                        \"order\": 0,\r\n                        \"createdAt\": null,\r\n                        \"updatedAt\": null\r\n                    }\r\n                ],\r\n                \"answers\": [\r\n                    {\r\n                        \"answerId\": 1,\r\n                        \"questionId\": null,\r\n                        \"text\": \"Red\",\r\n                        \"value\": 1\r\n                    }\r\n                ],\r\n                \"required\": false\r\n            },\r\n            {\r\n                \"questionId\": 2,\r\n                \"text\": \"What is your favorite food?\",\r\n                \"type\": \"OPEN_ENDED\",\r\n                \"order\": 0,\r\n                \"createdAt\": null,\r\n                \"updatedAt\": null,\r\n                \"options\": [],\r\n                \"answers\": [\r\n                    {\r\n                        \"answerId\": 2,\r\n                        \"questionId\": null,\r\n                        \"text\": \"Pizza\",\r\n                        \"value\": null\r\n                    }\r\n                ],\r\n                \"required\": false\r\n            }\r\n        ],\r\n        \"gptConversation\": null,\r\n        \"createdAt\": \"2023-04-11T23:54:12.569504\",\r\n        \"updatedAt\": \"2023-04-11T23:54:12.569504\"\r\n    },\r\n    {\r\n        \"name\": \"Quiz 1\",\r\n        \"id\": 2,\r\n        \"description\": \"This is Quiz 1\",\r\n        \"status\": \"PUBLISHED\",\r\n        \"questions\": [\r\n            {\r\n                \"questionId\": 3,\r\n                \"text\": \"What is your favorite color?\",\r\n                \"type\": \"MULTIPLE_CHOICE\",\r\n                \"order\": 0,\r\n                \"createdAt\": null,\r\n                \"updatedAt\": null,\r\n                \"options\": [\r\n                    {\r\n                        \"optionId\": 3,\r\n                        \"questionId\": null,\r\n                        \"text\": \"Red\",\r\n                        \"value\": 1,\r\n                        \"order\": 0,\r\n                        \"createdAt\": null,\r\n                        \"updatedAt\": null\r\n                    },\r\n                    {\r\n                        \"optionId\": 4,\r\n                        \"questionId\": null,\r\n                        \"text\": \"Blue\",\r\n                        \"value\": 2,\r\n                        \"order\": 0,\r\n                        \"createdAt\": null,\r\n                        \"updatedAt\": null\r\n                    }\r\n                ],\r\n                \"answers\": [\r\n                    {\r\n                        \"answerId\": 3,\r\n                        \"questionId\": null,\r\n                        \"text\": \"Red\",\r\n                        \"value\": 1\r\n                    }\r\n                ],\r\n                \"required\": false\r\n            },\r\n            {\r\n                \"questionId\": 4,\r\n                \"text\": \"What is your favorite food?\",\r\n                \"type\": \"OPEN_ENDED\",\r\n                \"order\": 0,\r\n                \"createdAt\": null,\r\n                \"updatedAt\": null,\r\n                \"options\": [],\r\n                \"answers\": [\r\n                    {\r\n                        \"answerId\": 4,\r\n                        \"questionId\": null,\r\n                        \"text\": \"Pizza\",\r\n                        \"value\": null\r\n                    }\r\n                ],\r\n                \"required\": false\r\n            }\r\n        ],\r\n        \"gptConversation\": {\r\n            \"id\": 1,\r\n            \"questions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"number\": 5,\r\n                    \"text\": \"What is the meaning of life?\",\r\n                    \"conversationId\": 1,\r\n                    \"quizId\": 2,\r\n                    \"createdAt\": null,\r\n                    \"updatedAt\": null\r\n                }\r\n            ],\r\n            \"quizId\": 2,\r\n            \"responses\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"number\": 2,\r\n                    \"conversationId\": 1,\r\n                    \"results\": [\r\n                        {\r\n                            \"id\": 1,\r\n                            \"question\": \"Question 1: What is the largest mammal in the world?\",\r\n                            \"answer\": \"Answer: The blue whale.\"\r\n                        },\r\n                        {\r\n                            \"id\": 2,\r\n                            \"question\": \"Question 2: What is the only bird that can fly backwards?\",\r\n                            \"answer\": \"Answer: The hummingbird.\"\r\n                        }\r\n                    ]\r\n                }\r\n            ],\r\n            \"createdAt\": \"2023-04-12T00:06:39.865148\",\r\n            \"updatedAt\": \"2023-04-12T00:06:39.865148\"\r\n        },\r\n        \"createdAt\": \"2023-04-12T00:06:36.618341\",\r\n        \"updatedAt\": \"2023-04-12T00:06:36.618341\"\r\n    }\r\n]\r\n\r\n{\r\n\"id\": 1,\r\n\"number\": 2,\r\n\"results\":\r\n    [\r\n        {\r\n        \"answer\": \"Answer: The blue whale.\",\r\n        \"question\": \"Question 1: What is the largest mammal in the world?\"\r\n        },\r\n        {\r\n        \"answer\": \"Answer: The hummingbird.\",\r\n        \"question\": \"Question 2: What is the only bird that can fly backwards?\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/quiz",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"quiz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get quizzes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/v1/quizzes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"quizzes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update quiz",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n    {\r\n        \"name\": \"Quiz 1\",\r\n        \"id\": 1,\r\n        \"description\": \"This is Quiz 1\",\r\n        \"gptRequest\": null,\r\n        \"status\": \"PUBLISHED\",\r\n        \"username\": null,\r\n        \"questions\": [],\r\n        \"gptConversation\": {\r\n            \"id\": 1,\r\n            \"quizId\": 1,\r\n            \"createdAt\": \"2023-04-17T21:31:03.388701\",\r\n            \"updatedAt\": \"2023-04-17T21:31:03.388701\",\r\n            \"questions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"number\": 5,\r\n                    \"text\": \"What is the meaning of life?\",\r\n                    \"conversationId\": 1,\r\n                    \"quizId\": null,\r\n                    \"createdAt\": null,\r\n                    \"updatedAt\": null\r\n                }\r\n            ],\r\n            \"responses\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"number\": 2,\r\n                    \"results\": [\r\n                        {\r\n                            \"id\": 1,\r\n                            \"question\": \"Question 1: What is the largest mammal in the world?\",\r\n                            \"answer\": \"Answer: The blue whale.\"\r\n                        },\r\n                        {\r\n                            \"id\": 2,\r\n                            \"question\": \"Question 2: What is the only bird that can fly backwards?\",\r\n                            \"answer\": \"Answer: The hummingbird.\"\r\n                        }\r\n                    ],\r\n                    \"conversationId\": 1\r\n                }\r\n            ]\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/quiz",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"quiz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get quiz by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/v1/quiz/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"quiz",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QuizAttempt",
+			"item": [
+				{
+					"name": "new Quiz attempt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quizId\": 1,\r\n  \"username\": \"witnick\",\r\n  \"userAnswerList\": [\r\n    {\r\n      \"questionId\": 1,\r\n      \"text\": \"Answer: The blue whale.\"\r\n    },\r\n    {\r\n      \"questionId\": 2,\r\n      \"text\": \"Answer: The hummingbird.\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/quizAttempt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"quizAttempt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Quiz attempt by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quizId\": 1,\r\n  \"username\": \"witnick\",\r\n  \"userAnswerList\": [\r\n    {\r\n      \"questionId\": 1,\r\n      \"text\": \"Answer: The blue whale.\"\r\n    },\r\n    {\r\n      \"questionId\": 2,\r\n      \"text\": \"Answer: The hummingbird.\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/quizAttempt/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"quizAttempt",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Quiz attempt by Id Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quizId\": 1,\r\n  \"username\": \"witnick\",\r\n  \"userAnswerList\": [\r\n    {\r\n      \"questionId\": 1,\r\n      \"text\": \"Answer: The blue whale.\"\r\n    },\r\n    {\r\n      \"questionId\": 2,\r\n      \"text\": \"Answer: The hummingbird.\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/quizAttempt/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"quizAttempt",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GPT",
+			"item": [
+				{
+					"name": "QueryGpt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Quiz 1\",\r\n    \"description\": \"This is Quiz 1\",\r\n    \"status\": \"DRAFT\",\r\n    \"questions\": null,\r\n    \"gptRequest\": {\r\n        \"number\": \"5\",\r\n        \"text\": \"What is the meaning of life?\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/queryGpt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"queryGpt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Conversation by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/v1/conversation/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"conversation",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    Username: \"witnick\",\r\n    Password: \"witnick\",\r\n    Email: \"witnick@test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/account/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"witnick\",\r\n    \"password\": \"witnick\",\r\n    \"email\": \"witnick@test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/account/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test retreiving login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "52f9fd12-7e43-4e06-a16a-3f583d671ce5"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/account/testretreivingLogin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"testretreivingLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test retreiving sing up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "52f9fd12-7e43-4e06-a16a-3f583d671ce5"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/account/testretreivingsignup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"testretreivingsignup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
